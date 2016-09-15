@@ -10,10 +10,11 @@ Ref: [Dockerizing a Ruby on Rails Application](https://semaphoreci.com/community
 - Install `docker`
 - Install `docker-compose`
 - Create `postgres` and `redis` volumes
-- Create db using `docker-compose`
-- Run `docker-compose`
+- Create and migrate db using `rake` commands with `docker-compose`
+- Run `docker-compose up`
 
 # Linux setup
+
 ## Ubuntu
 Ref: [https://docs.docker.com/engine/installation/linux/ubuntulinux/](https://docs.docker.com/engine/installation/linux/ubuntulinux/)
 
@@ -85,13 +86,14 @@ Ref: [https://docs.docker.com/engine/installation/linux/ubuntulinux/](https://do
 
       sudo lsof -i :5432
 
-  So postgres is using that port. Just shut down postgres:
+  So we'll find out that `postgres` is using that port. Just shut down `postgres`:
 
       sudo /etc/init.d/postgresql stop
 
   Same for the other errors. For example, with `redis`:
 
       sudo lsof -i :6379
+      # Guess what: it's redis-server!
       sudo /etc/init.d/redis-server stop
 
   Then we can give again:
