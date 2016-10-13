@@ -99,3 +99,47 @@ Ref: [https://docs.docker.com/engine/installation/linux/ubuntulinux/](https://do
   Then we can give again:
 
       sudo docker-compose up
+
+# Mac OS X setup
+
+Donwload and install the stable version of docker for mac as described here:
+
+`https://docs.docker.com/docker-for-mac`
+
+- Clone the project:
+
+    `git clone https://github.com/FullStackPE/drkiq.git`
+
+    `cd drkiq`
+
+- Start the containers
+
+    `docker-compose up`
+
+- You may need to create and migrate the db
+
+  `docker-compose run drkiq rake db:reset`
+
+  `docker-compose run drkiq rake db:migrate`
+
+## Errors
+
+To solve problems related to stopping local services that bind to the same ports used by Postgres and Redis (that run inside the container).
+
+```
+ERROR: for postgres  Cannot start service postgres: driver failed programming external connectivity on endpoint drkiq_postgres_1 (cb77f86584efd7f70c799b8f835fd9eb2ef257a7773d1bdd746375ad6a7e4798): Error starting userland proxy: Bind for 0.0.0.0:5432: unexpected error Uwt.Uwt_error(Uwt.EADDRINUSE, "listen", "")
+ERROR: Encountered errors while bringing up the project.
+```
+
+Identify the service who bind to `5432` port
+
+`lsof -i :5432`
+
+```
+COMMAND  PID USER  FD   TYPE DEVICE SIZE/OFF NODE NAME
+postgres 99 johnny 5u   IPv6 0x29      0t0   TCP  localhost:postgresql (LISTEN)
+```
+
+`brew services stop postgres`
+
+The same applies to Redis service
