@@ -104,7 +104,7 @@ Ref: [https://docs.docker.com/engine/installation/linux/ubuntulinux/](https://do
 
 Donwload and install the stable version of docker for mac as described here:
 
-`https://docs.docker.com/docker-for-mac`
+https://docs.docker.com/docker-for-mac
 
 - Clone the project:
 
