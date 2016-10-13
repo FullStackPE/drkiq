@@ -22,7 +22,7 @@ WORKDIR $INSTALL_PATH
 
 # Ensure gems are cached and only get updated when they change. This will
 # drastically increase build times when your gems do not change.
-COPY Gemfile Gemfile
+COPY Gemfile* ./
 RUN bundle install
 
 # Copy in the application code from your work station at the current directory
