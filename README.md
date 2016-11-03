@@ -143,3 +143,26 @@ postgres 99 johnny 5u   IPv6 0x29      0t0   TCP  localhost:postgresql (LISTEN)
 `brew services stop postgres`
 
 The same applies to Redis service
+
+
+## Some useful Docker commands
+
+- Show docker images installed on your computer ([images command ref.](https://docs.docker.com/engine/reference/commandline/images/))
+
+  `docker images`
+  
+- Show docker running images ([ps command ref.](https://docs.docker.com/engine/reference/commandline/ps/))
+
+  `docker ps -a -q`
+  
+- Delete a container ([rm command ref.](https://docs.docker.com/engine/reference/commandline/rm/))
+
+  `docker rm CONTAINER_NAME`
+  
+- Delete all containers ([rm command ref.](https://docs.docker.com/engine/reference/commandline/rm/))
+
+  `docker rm $(docker ps -a -q)`
+  
+- Delete all images ([rmi command ref.](https://docs.docker.com/engine/reference/commandline/rmi/))
+  
+  `docker rmi $(docker images -q)`
